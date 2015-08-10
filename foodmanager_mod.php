@@ -429,6 +429,9 @@ class foodmanager {
                         (
                           fd.day < now()::date OR
                           fd.close_stamp IS NOT NULL
+                        ) AND
+                        (
+                          SELECT COUNT(*) > 1 FROM foods f WHERE f.food_day_id = fd.food_day_id
                         )
                     ) AS driver_count,
                     (
@@ -436,11 +439,11 @@ class foodmanager {
                         COUNT(*)
                       FROM
                         food_days fd
-                      INNER JOIN foods f ON (
-                        fd.food_day_id = f.food_day_id AND
-                        f.user_id = u.user_id AND
-                        f.request IS NOT NULL
-                      )
+                        INNER JOIN foods f ON (
+                          fd.food_day_id = f.food_day_id AND
+                          f.user_id = u.user_id AND
+                          f.request IS NOT NULL
+                        )
                       WHERE
                         fd.create_user_id IS NOT NULL AND
                         fd.create_user_id != u.user_id AND
