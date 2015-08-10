@@ -431,7 +431,7 @@ class foodmanager {
                           fd.close_stamp IS NOT NULL
                         ) AND
                         (
-                          SELECT COUNT(*) > 1 FROM foods f WHERE f.food_day_id = fd.food_day_id
+                          SELECT COUNT(*) > 0 FROM foods f WHERE f.food_day_id = fd.food_day_id AND f.user_id != fd.create_user_id
                         )
                     ) AS driver_count,
                     (
