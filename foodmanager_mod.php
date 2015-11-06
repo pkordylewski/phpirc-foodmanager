@@ -490,7 +490,8 @@ class foodmanager {
         $food_info  = '';
 
         $headers = 'From: foodmanager@fooby.de' . "\r\n" .
-                   'Reply-To: pk@fooby.de';
+                   'Reply-To: pk@fooby.de' . "\r\n" .
+                   'Content-Type: text/plain; charset="UTF-8"';
 
         $subject = "fooby Food-Manager";
 
